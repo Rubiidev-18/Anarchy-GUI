@@ -1,7 +1,9 @@
-name: Publish
-
 on:
-  workflow_dispatch:
+  push:
+    paths-ignore:
+      - '**'
+    branches:
+      - develop
 
 jobs:
   build:
@@ -16,7 +18,7 @@ jobs:
           cache: "npm"
       
       - name: Install Dependencies
-        run: npm ci
+        run: npm ci --force
 
       - name: Build Scratch
         run: npm run build
@@ -36,6 +38,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Check commit message
+        id: check_commit_message
+        run: echo "::set-output name=is_publish_commit::$(if [[ $(git log --format=%B -n 1 ${{ github.sha }}) == *Publish* ]]; then echo true; else echo false; fi)"
+
       - name: Publish Pages
+        if: steps.check_commit_message.outputs.is_publish_commit == 'true'
         id: deployment
         uses: actions/deploy-pages@v2
