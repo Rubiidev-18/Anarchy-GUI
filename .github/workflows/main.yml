@@ -10,7 +10,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm install
+          npm install -- force
           npm ci --force
 
       - name: Build Scratch
