@@ -80,7 +80,7 @@ export default [
         insetIconURL: penInsetIconURL,
         description: (
             <FormattedMessage
-                defaultMessage="Draw with your sprites."
+                defaultMessage="Draw with your sprites. Improvments added from PenguinMod."
                 description="Description for the 'Pen' extension"
                 id="gui.extension.pen.description"
             />
