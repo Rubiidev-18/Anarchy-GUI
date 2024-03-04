@@ -5,7 +5,7 @@ const webpack = require('webpack');
 // Plugins
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // PostCss
 const autoprefixer = require('autoprefixer');
@@ -61,10 +61,11 @@ const base = {
             }, {
                 loader: 'css-loader',
                 options: {
-                    modules: true,
+                    modules: {
+                        localIdentName: '[name]_[local]_[hash:base64:5]'
+                    },
                     importLoaders: 1,
-                    localIdentName: '[name]_[local]_[hash:base64:5]',
-                    camelCase: true
+                    localsConvention: 'camelCase'
                 }
             }, {
                 loader: 'postcss-loader',
@@ -92,7 +93,7 @@ const base = {
     },
     optimization: {
         minimizer: [
-            new UglifyJsPlugin({
+            new TerserPlugin({
                 include: /\.min\.js$/
             })
         ]
