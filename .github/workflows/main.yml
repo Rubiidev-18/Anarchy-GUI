@@ -1,20 +1,19 @@
 on:
   push:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: "npm"
-      
       - name: Install Dependencies
-        run: npm ci --force
+        run: |
+          npm install
+          npm ci --force
 
       - name: Build Scratch
         run: npm run build
@@ -35,5 +34,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Publish Pages
-        id: deployment
         uses: actions/deploy-pages@v2
