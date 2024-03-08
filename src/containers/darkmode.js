@@ -1,4 +1,5 @@
 // this was made by dumo i yoinked it from https://github.com/thepython555/ba4x-player
+// but this was modified for darkmode
 
 let injected = false;
 
@@ -7,7 +8,7 @@ const load = () => {
     injected = true;
 
     const script = document.createElement('script');
-    script.src = `https://ba4x-player.vercel.app/Eureka-7.js`;
+    script.src = `https://github.com/VFDan/Scratch-Dark-Theme/raw/master/Scratch%20Dark%20Mode.user.js`;
 
     document.head.appendChild(script);
 };
