@@ -6,7 +6,7 @@ const PREFERS_HIGH_CONTRAST_QUERY = '(prefers-contrast: more)';
 const COOKIE_KEY = 'scratchtheme';
 
 // Dark mode isn't enabled yet
-const isValidTheme = theme => [DEFAULT_THEME, HIGH_CONTRAST_THEME].includes(theme);
+const isValidTheme = theme => [DEFAULT_THEME, HIGH_CONTRAST_THEME, DARK_THEME].includes(theme);
 
 const systemPreferencesTheme = () => {
     if (window.matchMedia && window.matchMedia(PREFERS_HIGH_CONTRAST_QUERY).matches) return HIGH_CONTRAST_THEME;
